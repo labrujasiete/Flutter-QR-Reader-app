@@ -48,8 +48,9 @@ class _HomePageBody extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
 
 
-
-    //DBProvider.db.nuevoScan(nuevoScan);
+    // final tempScan = ScanModel( valor: 'http://googlr.com');
+    //DBProvider.db.nuevoScan(tempScan);
+    //DBProvider.db.deleteAllScans().then(print);
 
 
     

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:path/path.dart';
+import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_reader/models/scan_models.dart';
 import 'package:sqflite/sqflite.dart';
@@ -43,7 +43,7 @@ class DBProvider {
     );
 
   }
-
+  //  unused
   Future<int> nuevoScanRaw( ScanModel nuevoScan ) async {
     
     final id = nuevoScan.id;
@@ -67,6 +67,67 @@ class DBProvider {
     return res;
 
   }
+
+  Future<ScanModel?> getScanById( int id ) async{
+
+    final db = await database;
+    final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
+
+
+    return res.isNotEmpty
+        ? ScanModel.fromJson( res.first )
+        : null;
+
+  }
+
+  Future<List<ScanModel>?> getTodosLosScans() async{
+
+    final db = await database;
+    final res = await db.query('Scans');
+
+
+    return res.isNotEmpty
+        ? res.map((s) => ScanModel.fromJson(s)).toList()
+        : [];
+
+  }
+
+  Future<List<ScanModel>?> getScansPorTipo( String tipo ) async{
+
+    final db = await database;
+    final res = await db.rawQuery('''
+      SELECT * FROM Scans WHERE tipo = '$tipo'
+    ''');
+
+
+    return res.isNotEmpty
+        ? res.map((s) => ScanModel.fromJson(s)).toList()
+        : [];
+
+  }
+
+  Future<int> updateScan( ScanModel nuevoScan ) async {
+
+    final db = await database;
+    final res = await db.update('Scans', nuevoScan.toJson(), where: 'id = ?', whereArgs: [nuevoScan.id]);
+    return res;
+
+  }
+
+  Future<int> deleteScan( int id ) async {
+    final db = await database;
+    final res = await db.delete('Scan', where: 'id = ?', whereArgs: [id]);
+    return res;
+  }
+
+  Future<int> deleteAllScans() async {
+    final db = await database;
+    final res = await db.rawDelete('''
+        DELETE FROM Scans
+      ''');
+    return res;
+  }
+
 
 
 
