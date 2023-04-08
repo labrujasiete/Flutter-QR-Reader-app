@@ -48,7 +48,8 @@ class _HomePageBody extends StatelessWidget {
     final currentIndex = uiProvider.selectedMenuOpt;
 
 
-    DBProvider.db.database;
+
+    //DBProvider.db.nuevoScan(nuevoScan);
 
 
     
