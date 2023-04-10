@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_reader/models/scan_models.dart';
+export 'package:qr_reader/models/scan_models.dart';
 import 'package:sqflite/sqflite.dart';
 
 
@@ -92,7 +93,7 @@ class DBProvider {
 
   }
 
-  Future<List<ScanModel>?> getScansPorTipo( String tipo ) async{
+  Future<List<ScanModel>> getScansPorTipo( String tipo ) async{
 
     final db = await database;
     final res = await db.rawQuery('''
