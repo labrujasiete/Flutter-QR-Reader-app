@@ -34,6 +34,12 @@ Once the app is running, you can scan QR codes using your phone's camera. The de
 Location information can also be displayed using the Google Maps API integration.
 
 &nbsp;
+## Downloads
+You can download the [Android APK here](android_build/app-release.apk), or in the repository directory
+>android_build/app-release.apk
+
+&nbsp;
+
 
 ![MiAWLAfns7pPgptcHFFPe8UAwMhPTPp3WWgt](https://user-images.githubusercontent.com/48364518/232152673-6f644a1d-830b-46c9-9af4-986cf029ecc5.png)
 
